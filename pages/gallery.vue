@@ -95,7 +95,7 @@ onUnmounted(() => {
         class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
         @click="refresh"
       >
-        🔄 Refresh
+        Refresh
       </button>
     </section>
 
@@ -131,7 +131,7 @@ onUnmounted(() => {
             />
             <div class="overlay-actions">
               <button class="view-btn" @click="selectedPhoto = photo">
-                👁️ View
+                View
               </button>
             </div>
           </div>
@@ -147,11 +147,11 @@ onUnmounted(() => {
                 @click="deletePhoto(photo.name)"
                 title="Delete this photo"
               >
-                🗑️ Delete
+                Delete
               </button>
               
               <label class="action-btn replace-btn" title="Replace with a new photo">
-                ✏️ Replace
+                Replace
                 <input
                   type="file"
                   accept="image/*"

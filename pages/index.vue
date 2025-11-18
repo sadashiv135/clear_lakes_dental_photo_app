@@ -36,7 +36,6 @@ async function logout() {
         <!-- Feature 1: Gallery -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-center">
-            <div class="text-5xl mb-2">🖼️</div>
             <h3 class="text-xl font-bold text-white">Photo Gallery</h3>
           </div>
           <div class="p-6 space-y-4">
@@ -55,7 +54,6 @@ async function logout() {
         <!-- Feature 2: Upload -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-center">
-            <div class="text-5xl mb-2">📤</div>
             <h3 class="text-xl font-bold text-white">Upload Photo</h3>
           </div>
           <div class="p-6 space-y-4">
@@ -74,7 +72,6 @@ async function logout() {
         <!-- Feature 3: Logout -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 text-center">
-            <div class="text-5xl mb-2">🚪</div>
             <h3 class="text-xl font-bold text-white">Logout</h3>
           </div>
           <div class="p-6 space-y-4">
