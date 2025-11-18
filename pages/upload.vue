@@ -18,7 +18,6 @@ function onFileChange(event: Event) {
 
   if (!file) return;
 
-  // Strict validation: ensure the file is an actual image
   if (!file.type.startsWith("image/")) {
     errorMessage.value = "Please select an image file (JPG, JPEG, PNG, etc.).";
     return;
@@ -28,8 +27,6 @@ function onFileChange(event: Event) {
   previewUrl.value = URL.createObjectURL(file);
 }
 
-
-// Clear selected file + preview (but stay on page)
 function clearSelection() {
   selectedFile.value = null;
   previewUrl.value = null;
@@ -77,7 +74,6 @@ async function uploadPhoto() {
   <Header />
 
   <main class="max-w-2xl mx-auto px-4 py-12">
-    <!-- Back to home -->
     <button
       class="text-blue-600 hover:text-blue-800 mb-4 inline-flex items-center gap-1 text-sm font-medium"
       @click="navigateTo('/')"

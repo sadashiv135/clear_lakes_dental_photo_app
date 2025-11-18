@@ -8,7 +8,7 @@ const isRegister = ref(false);
 const loading = ref(false);
 const errorMessage = ref("");
 
-// If already logged in, redirect to gallery
+// If already logged in, redirect to home
 watchEffect(() => {
   if (user.value) {
     navigateTo("/");
