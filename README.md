@@ -3,7 +3,7 @@
 A modern photo management application built with **Nuxt 3** and **Supabase**.
 
 ## Live Demo
-🔗 **Hosted on Vercel:** [Add your Vercel link here]
+🔗 **Hosted on Vercel:** https://clear-lakes-dental-photo-app.vercel.app/
 
 ---
 
@@ -58,18 +58,3 @@ A modern photo management application built with **Nuxt 3** and **Supabase**.
    npm run dev
    ```
    Open `http://localhost:3000` in your browser
-
----
-
-## Tech Stack
-- Nuxt 3
-- Vue 3
-- TypeScript
-- Supabase
-- Tailwind CSS
-
----
-
-## License
-
-MIT License
