@@ -76,77 +76,103 @@ async function uploadPhoto() {
 <template>
   <Header />
 
-  <main class="max-w-xl mx-auto px-6 py-10 space-y-6">
+  <main class="max-w-2xl mx-auto px-4 py-12">
     <!-- Back to home -->
     <button
-      class="text-xs text-gray-600 underline"
+      class="text-blue-600 hover:text-blue-800 mb-4 inline-flex items-center gap-1 text-sm font-medium"
       @click="navigateTo('/')"
     >
       ← Back to Home
     </button>
 
-    <section>
-      <h2 class="text-xl font-semibold mb-1">Upload Photo</h2>
-      <p class="text-sm text-gray-600">
-        Select an image to add it to the Clear Lakes Dental photo library.
+    <!-- Header -->
+    <section class="mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Upload Photo</h2>
+      <p class="text-gray-600">
+        Add a new photo to the Clear Lakes Dental photo library.
       </p>
     </section>
 
-    <section class="space-y-4 border rounded-xl p-4 bg-white shadow-sm">
-      <!-- File picker -->
-      <div class="space-y-2">
-        <label class="block text-sm font-medium">Choose image</label>
-        <input
-          type="file"
-          accept="image/*"
-          @change="onFileChange"
-          class="block w-full text-sm"
-        />
-        <p class="text-xs text-gray-500">
-          Supported: common image formats (JPG, PNG, etc).
-        </p>
-      </div>
+    <!-- Upload Card -->
+    <section class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+      <div class="p-8 space-y-6">
+        <!-- File picker -->
+        <div class="space-y-3">
+          <label class="block text-sm font-semibold text-gray-900">
+            📷 Choose Image
+          </label>
+          <div class="relative">
+            <input
+              type="file"
+              accept="image/*"
+              @change="onFileChange"
+              class="hidden"
+              id="file-input"
+            />
+            <label 
+              for="file-input"
+              class="block w-full px-4 py-3 bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors text-center text-sm font-medium text-blue-700"
+            >
+              Click to select or drag file here
+            </label>
+          </div>
+          <p class="text-xs text-gray-500">
+            Supported: JPG, JPEG, PNG, GIF, WebP (Max 5MB)
+          </p>
+        </div>
 
-      <!-- Preview -->
-      <div v-if="previewUrl" class="space-y-2">
-        <p class="text-sm font-medium">Preview</p>
-        <div class="border rounded-lg overflow-hidden max-h-64">
-          <img
-            :src="previewUrl"
-            alt="Preview"
-            class="w-full h-64 object-cover"
-          />
+        <!-- Preview -->
+        <div v-if="previewUrl" class="space-y-3">
+          <p class="text-sm font-semibold text-gray-900">Preview</p>
+          <div class="overflow-hidden rounded-lg bg-gray-100 h-64">
+            <img
+              :src="previewUrl"
+              alt="Preview"
+              class="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div v-if="errorMessage || successMessage" class="space-y-2">
+          <div v-if="errorMessage" class="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <span class="text-xl">⚠️</span>
+            <p class="text-sm text-red-700">{{ errorMessage }}</p>
+          </div>
+          <div v-if="successMessage" class="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+            <span class="text-xl">✅</span>
+            <p class="text-sm text-green-700">{{ successMessage }}</p>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+          <button
+            type="button"
+            class="text-gray-600 hover:text-gray-900 text-sm font-medium"
+            @click="clearSelection"
+            :disabled="uploading"
+          >
+            Clear
+          </button>
+
+          <button
+            type="button"
+            :disabled="!selectedFile || uploading"
+            class="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm font-semibold"
+            @click="uploadPhoto"
+          >
+            {{ uploading ? "⏳ Uploading..." : "📤 Upload Photo" }}
+          </button>
         </div>
       </div>
-
-      <!-- Messages -->
-      <p v-if="errorMessage" class="text-sm text-red-600">
-        {{ errorMessage }}
-      </p>
-      <p v-if="successMessage" class="text-sm text-green-600">
-        {{ successMessage }}
-      </p>
-
-      <!-- Actions -->
-      <div class="flex justify-between items-center pt-2">
-        <button
-          type="button"
-          class="text-sm underline"
-          @click="clearSelection"
-          :disabled="uploading"
-        >
-          Clear selection
-        </button>
-
-        <button
-          type="button"
-          :disabled="uploading"
-          class="text-sm font-medium border rounded-full px-4 py-1.5 disabled:opacity-60"
-          @click="uploadPhoto"
-        >
-          {{ uploading ? "Uploading..." : "Upload" }}
-        </button>
-      </div>
     </section>
+
+    <!-- Info Box -->
+    <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <p class="text-sm text-blue-900">
+        <strong>💡 Tip:</strong> Upload high-quality photos. They will appear in the Photo Gallery immediately.
+      </p>
+    </div>
   </main>
 </template>
